@@ -1,3 +1,4 @@
+
 import re
 import streamlit as st
 import random
@@ -7,7 +8,7 @@ import string
 def password_strength(password):
     score = 0
     feedback = []
-    
+
     # Length Check
     if len(password) >= 12:
         score += 2  # Bonus for extra length
@@ -93,8 +94,7 @@ def main():
             elif strength == "✅ Strong":
                 st.success("🟢 Strong password!")
             else:
-                st.success("💎 Excellent password!")
-                st.balloons()
+                st.success("💎 Excellent password! ⭐⭐⭐⭐⭐")  # 🎈 Replaced balloons with stars
 
             st.session_state.password_history.append(password)
         else:
@@ -106,6 +106,11 @@ def main():
     if st.button("Generate Password"):
         new_password = generate_password(length)
         st.text_input("🔒 Your Secure Password:", new_password)
+
+    # Clear Password History Button
+    if st.button("🗑️ Clear History"):
+        st.session_state.password_history.clear()
+        st.rerun()  
 
     # Password History Display
     st.subheader("📜 Recent Passwords")
